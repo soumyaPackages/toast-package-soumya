@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build-and-publish:
@@ -16,17 +13,16 @@ jobs:
       packages: write
 
     steps:
-      # Checkout the code
+      # Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Setup Node.js environment
+      # Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           registry-url: "https://npm.pkg.github.com/"
-          scope: "@soumyaPackages"
 
       # Install dependencies
       - name: Install Dependencies
@@ -36,8 +32,8 @@ jobs:
       - name: Build Package
         run: npm run rollup
 
-      # Publish the package to GitHub Packages
+      # Publish to GitHub Packages
       - name: Publish to GitHub Packages
-        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish --registry https://npm.pkg.github.com/
