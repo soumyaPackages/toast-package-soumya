@@ -1,0 +1,31 @@
+{
+  "name": "toast-package-soumya",
+  "version": "1.0.0",
+  "description": "Simple Toast Library to show toast to user according to their requirement'",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rollup": "rollup -c --bundleConfigAsCjs"
+  },
+  "author": "Soumya Ranjan Hembram",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/react": "^19.0.2",
+    "react": "^19.0.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "react-icons": "^5.4.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "uuid": "^11.0.3"
+  }
+}
