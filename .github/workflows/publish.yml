@@ -21,8 +21,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          registry-url: "https://npm.pkg.github.com/"
-          scope: "@soumyaPackages"
           cache: "npm"
 
       - name: Install dependencies
@@ -31,7 +29,18 @@ jobs:
       - name: Build the package
         run: npm run rollup
 
+      - name: Upload Built Files to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist
+          asset_name: dist.zip
+          asset_content_type: application/zip
+
       - name: Create GitHub Release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
